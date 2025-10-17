@@ -99,6 +99,8 @@ You must add your own keys and URLs to the `/esp32_firmware/smart_water_tank.ino
 Deploy the functions in the `/smart_water_tank/functions` folder to your own Firebase project using the Firebase CLI.
 
 ### 4. Firebase Rules
-You must add the secure database rules from the `/database.rules.json` file (in the main project root) to your Firebase Realtime Database project to secure user data.
+You must add the secure database rules to your Firebase project:
+* Copy the rules from `/database.rules.json` and paste them into the **Realtime Database** rules editor in your Firebase console.
+* Copy the rules from `/firestore.rules` and paste them into the **Firestore Database** rules editor in your Firebase console.
 
 ---
