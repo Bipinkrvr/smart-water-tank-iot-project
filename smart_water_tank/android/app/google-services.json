@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "project no",
+    "firebase_url": "url",
+    "project_id": "smart-water-tank-app",
+    "storage_bucket": "storage bucket"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "app id",
+        "android_client_info": {
+          "package_name": "com.example.smart_water_tank"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "key"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
