@@ -1,0 +1,52 @@
+{
+  "rules": {
+    "tanks": {
+      "$uid": {
+        // A user can only read or write to the path that matches their own UID
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null && auth.uid == $uid",
+
+        // --- Hardware Data Validation ---
+        "live_data": {
+          "water_level": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+          },
+          "last_updated": {
+            // Server timestamps don't need validation from the client
+            ".validate": "newData.exists()"
+          }
+        },
+        "controls": {
+          "pump_status": { ".validate": "newData.isBoolean()" },
+          "auto_mode": { ".validate": "newData.isBoolean()" },
+          "tank_height_cm": { ".validate": "newData.isNumber() && newData.val() > 0" }
+        },
+
+        // --- App/Server Data Validation (The New Part) ---
+        "motor_history": {
+          "$pushId": {
+            "event": { ".validate": "newData.isString()" },
+            "timestamp": { ".validate": "newData.isNumber()" }
+          }
+        },
+        "level_history": {
+          "$pushId": {
+            "event": { ".validate": "newData.isString()" },
+            "timestamp": { ".validate": "newData.isNumber()" }
+          }
+        },
+        "settings": {
+          "notifications_enabled": { ".validate": "newData.isBoolean()" }
+        },
+        "fcm_tokens": {
+          "$token": {
+            ".validate": "newData.isBoolean() && newData.val() == true"
+          }
+        },
+
+        // --- Optional but Recommended: Disallow other unknown data ---
+        "$other": { ".validate": false }
+      }
+    }
+  }
+}
